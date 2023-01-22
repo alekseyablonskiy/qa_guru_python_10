@@ -1,7 +1,6 @@
 import os
 
 import pytest
-from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
@@ -10,13 +9,14 @@ from dotenv import load_dotenv
 from demoqa_tests.utils import attach
 
 
+
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
 
 
 @pytest.fixture(scope='function')
-def setup_browser():
+def open_browser():
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
@@ -35,9 +35,7 @@ def setup_browser():
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    browser.config.driver = driver
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
+    browser = Browser(Config(driver))
 
     yield
 
