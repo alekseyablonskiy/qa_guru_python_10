@@ -9,7 +9,7 @@ from demoqa_tests.utils import path_to_file, date_config
 
 class PracticeForm:
     def open_page(self):
-        browser.open('https://demoqa.com/automation-practice-form')
+        browser.open('/automation-practice-form')
         browser.driver.execute_script("$('footer').remove()")
         browser.driver.execute_script("$('#fixedban').remove()")
         return self
