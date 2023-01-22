@@ -1,6 +1,7 @@
 import os
 
 import pytest
+from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
@@ -27,13 +28,18 @@ def setup_browser():
     }
     options.capabilities.update(selenoid_capabilities)
 
+    login = os.getenv('LOGIN')
+    password = os.getenv('PASSWORD')
+
     driver = webdriver.Remote(
-        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    browser = Browser(Config(driver))
+    browser.config.driver = driver
+    browser.config.window_width = 1920
+    browser.config.window_height = 1080
 
-    yield browser
+    yield
 
     attach.add_html(browser)
     attach.add_screenshot(browser)
