@@ -1,0 +1,16 @@
+{
+  "base": {
+    "logo": "",
+    "project": "${JOB_BASE_NAME}",
+    "environment": "chrome99",
+    "comment": "qa_guru_python_12",
+    "reportLink": "${BUILD_URL}",
+    "language": "en",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "5868431822:AAGYdSejhHyHhR9O_tq0YibHDCvN8ZKwcko",
+    "chat": "-1001818552884",
+    "replyTo": ""
+  }
